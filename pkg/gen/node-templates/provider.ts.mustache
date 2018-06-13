@@ -18,6 +18,8 @@ export namespace {{Group}} {
 
       {{/Properties}}
 
+      public readonly inputs?: inputApi.{{Group}}.{{Version}}.{{Kind}};
+
       /**
       * Create a {{Group}}.{{Version}}.{{Kind}} resource with the given unique name, arguments, and options.
       *
@@ -31,6 +33,7 @@ export namespace {{Group}} {
           inputs["{{Name}}"] = {{{DefaultValue}}};
           {{/Properties}}
           super("kubernetes:{{Group}}/{{Version}}:{{Kind}}", name, inputs, opts);
+          this.inputs = args;
       }
     }
 

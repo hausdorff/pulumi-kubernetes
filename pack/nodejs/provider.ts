@@ -42,6 +42,8 @@ export namespace admissionregistration {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ObjectMeta>;
 
 
+      public readonly inputs?: inputApi.admissionregistration.v1alpha1.InitializerConfiguration;
+
       /**
       * Create a admissionregistration.v1alpha1.InitializerConfiguration resource with the given unique name, arguments, and options.
       *
@@ -56,6 +58,7 @@ export namespace admissionregistration {
           inputs["kind"] = "InitializerConfiguration";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:admissionregistration/v1alpha1:InitializerConfiguration", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -91,6 +94,8 @@ export namespace admissionregistration {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.admissionregistration.v1alpha1.InitializerConfigurationList;
+
       /**
       * Create a admissionregistration.v1alpha1.InitializerConfigurationList resource with the given unique name, arguments, and options.
       *
@@ -105,6 +110,7 @@ export namespace admissionregistration {
           inputs["kind"] = "InitializerConfigurationList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:admissionregistration/v1alpha1:InitializerConfigurationList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -144,6 +150,8 @@ export namespace admissionregistration {
       public readonly webhooks: pulumi.Output<outputApi.admissionregistration.v1beta1.Webhook[]>;
 
 
+      public readonly inputs?: inputApi.admissionregistration.v1beta1.MutatingWebhookConfiguration;
+
       /**
       * Create a admissionregistration.v1beta1.MutatingWebhookConfiguration resource with the given unique name, arguments, and options.
       *
@@ -158,6 +166,7 @@ export namespace admissionregistration {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["webhooks"] = args ? args.webhooks : undefined;
           super("kubernetes:admissionregistration/v1beta1:MutatingWebhookConfiguration", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -193,6 +202,8 @@ export namespace admissionregistration {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.admissionregistration.v1beta1.MutatingWebhookConfigurationList;
+
       /**
       * Create a admissionregistration.v1beta1.MutatingWebhookConfigurationList resource with the given unique name, arguments, and options.
       *
@@ -207,6 +218,7 @@ export namespace admissionregistration {
           inputs["kind"] = "MutatingWebhookConfigurationList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:admissionregistration/v1beta1:MutatingWebhookConfigurationList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -243,6 +255,8 @@ export namespace admissionregistration {
       public readonly webhooks: pulumi.Output<outputApi.admissionregistration.v1beta1.Webhook[]>;
 
 
+      public readonly inputs?: inputApi.admissionregistration.v1beta1.ValidatingWebhookConfiguration;
+
       /**
       * Create a admissionregistration.v1beta1.ValidatingWebhookConfiguration resource with the given unique name, arguments, and options.
       *
@@ -257,6 +271,7 @@ export namespace admissionregistration {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["webhooks"] = args ? args.webhooks : undefined;
           super("kubernetes:admissionregistration/v1beta1:ValidatingWebhookConfiguration", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -292,6 +307,8 @@ export namespace admissionregistration {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.admissionregistration.v1beta1.ValidatingWebhookConfigurationList;
+
       /**
       * Create a admissionregistration.v1beta1.ValidatingWebhookConfigurationList resource with the given unique name, arguments, and options.
       *
@@ -306,6 +323,7 @@ export namespace admissionregistration {
           inputs["kind"] = "ValidatingWebhookConfigurationList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:admissionregistration/v1beta1:ValidatingWebhookConfigurationList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -350,6 +368,8 @@ export namespace apiextensions {
       public readonly status: pulumi.Output<outputApi.apiextensions.v1beta1.CustomResourceDefinitionStatus>;
 
 
+      public readonly inputs?: inputApi.apiextensions.v1beta1.CustomResourceDefinition;
+
       /**
       * Create a apiextensions.v1beta1.CustomResourceDefinition resource with the given unique name, arguments, and options.
       *
@@ -365,6 +385,7 @@ export namespace apiextensions {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apiextensions/v1beta1:CustomResourceDefinition", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -397,6 +418,8 @@ export namespace apiextensions {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apiextensions.v1beta1.CustomResourceDefinitionList;
+
       /**
       * Create a apiextensions.v1beta1.CustomResourceDefinitionList resource with the given unique name, arguments, and options.
       *
@@ -411,6 +434,7 @@ export namespace apiextensions {
           inputs["kind"] = "CustomResourceDefinitionList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apiextensions/v1beta1:CustomResourceDefinitionList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -454,6 +478,8 @@ export namespace apiregistration {
       public readonly status: pulumi.Output<outputApi.apiregistration.v1beta1.APIServiceStatus>;
 
 
+      public readonly inputs?: inputApi.apiregistration.v1beta1.APIService;
+
       /**
       * Create a apiregistration.v1beta1.APIService resource with the given unique name, arguments, and options.
       *
@@ -469,6 +495,7 @@ export namespace apiregistration {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apiregistration/v1beta1:APIService", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -499,6 +526,8 @@ export namespace apiregistration {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apiregistration.v1beta1.APIServiceList;
+
       /**
       * Create a apiregistration.v1beta1.APIServiceList resource with the given unique name, arguments, and options.
       *
@@ -513,6 +542,7 @@ export namespace apiregistration {
           inputs["kind"] = "APIServiceList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apiregistration/v1beta1:APIServiceList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -566,6 +596,8 @@ export namespace apps {
       public readonly revision: pulumi.Output<number>;
 
 
+      public readonly inputs?: inputApi.apps.v1.ControllerRevision;
+
       /**
       * Create a apps.v1.ControllerRevision resource with the given unique name, arguments, and options.
       *
@@ -581,6 +613,7 @@ export namespace apps {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["revision"] = args ? args.revision : undefined;
           super("kubernetes:apps/v1:ControllerRevision", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -615,6 +648,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1.ControllerRevisionList;
+
       /**
       * Create a apps.v1.ControllerRevisionList resource with the given unique name, arguments, and options.
       *
@@ -629,6 +664,7 @@ export namespace apps {
           inputs["kind"] = "ControllerRevisionList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1:ControllerRevisionList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -672,6 +708,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1.DaemonSetStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1.DaemonSet;
+
       /**
       * Create a apps.v1.DaemonSet resource with the given unique name, arguments, and options.
       *
@@ -687,6 +725,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1:DaemonSet", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -722,6 +761,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1.DaemonSetList;
+
       /**
       * Create a apps.v1.DaemonSetList resource with the given unique name, arguments, and options.
       *
@@ -736,6 +777,7 @@ export namespace apps {
           inputs["kind"] = "DaemonSetList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1:DaemonSetList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -775,6 +817,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1.DeploymentStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1.Deployment;
+
       /**
       * Create a apps.v1.Deployment resource with the given unique name, arguments, and options.
       *
@@ -790,6 +834,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1:Deployment", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -824,6 +869,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1.DeploymentList;
+
       /**
       * Create a apps.v1.DeploymentList resource with the given unique name, arguments, and options.
       *
@@ -838,6 +885,7 @@ export namespace apps {
           inputs["kind"] = "DeploymentList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1:DeploymentList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -882,6 +930,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1.ReplicaSetStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1.ReplicaSet;
+
       /**
       * Create a apps.v1.ReplicaSet resource with the given unique name, arguments, and options.
       *
@@ -897,6 +947,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1:ReplicaSet", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -933,6 +984,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1.ReplicaSetList;
+
       /**
       * Create a apps.v1.ReplicaSetList resource with the given unique name, arguments, and options.
       *
@@ -947,6 +1000,7 @@ export namespace apps {
           inputs["kind"] = "ReplicaSetList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1:ReplicaSetList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -989,6 +1043,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1.StatefulSetStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1.StatefulSet;
+
       /**
       * Create a apps.v1.StatefulSet resource with the given unique name, arguments, and options.
       *
@@ -1004,6 +1060,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1:StatefulSet", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1034,6 +1091,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1.StatefulSetList;
+
       /**
       * Create a apps.v1.StatefulSetList resource with the given unique name, arguments, and options.
       *
@@ -1048,6 +1107,7 @@ export namespace apps {
           inputs["kind"] = "StatefulSetList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1:StatefulSetList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1100,6 +1160,8 @@ export namespace apps {
       public readonly revision: pulumi.Output<number>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta1.ControllerRevision;
+
       /**
       * Create a apps.v1beta1.ControllerRevision resource with the given unique name, arguments, and options.
       *
@@ -1115,6 +1177,7 @@ export namespace apps {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["revision"] = args ? args.revision : undefined;
           super("kubernetes:apps/v1beta1:ControllerRevision", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1149,6 +1212,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta1.ControllerRevisionList;
+
       /**
       * Create a apps.v1beta1.ControllerRevisionList resource with the given unique name, arguments, and options.
       *
@@ -1163,6 +1228,7 @@ export namespace apps {
           inputs["kind"] = "ControllerRevisionList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1beta1:ControllerRevisionList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1204,6 +1270,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1beta1.DeploymentStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta1.Deployment;
+
       /**
       * Create a apps.v1beta1.Deployment resource with the given unique name, arguments, and options.
       *
@@ -1219,6 +1287,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1beta1:Deployment", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1253,6 +1322,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta1.DeploymentList;
+
       /**
       * Create a apps.v1beta1.DeploymentList resource with the given unique name, arguments, and options.
       *
@@ -1267,6 +1338,7 @@ export namespace apps {
           inputs["kind"] = "DeploymentList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1beta1:DeploymentList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1306,6 +1378,8 @@ export namespace apps {
       public readonly updatedAnnotations: pulumi.Output<object>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta1.DeploymentRollback;
+
       /**
       * Create a apps.v1beta1.DeploymentRollback resource with the given unique name, arguments, and options.
       *
@@ -1321,6 +1395,7 @@ export namespace apps {
           inputs["rollbackTo"] = args ? args.rollbackTo : undefined;
           inputs["updatedAnnotations"] = args ? args.updatedAnnotations : undefined;
           super("kubernetes:apps/v1beta1:DeploymentRollback", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1364,6 +1439,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1beta1.ScaleStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta1.Scale;
+
       /**
       * Create a apps.v1beta1.Scale resource with the given unique name, arguments, and options.
       *
@@ -1379,6 +1456,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1beta1:Scale", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1423,6 +1501,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1beta1.StatefulSetStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta1.StatefulSet;
+
       /**
       * Create a apps.v1beta1.StatefulSet resource with the given unique name, arguments, and options.
       *
@@ -1438,6 +1518,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1beta1:StatefulSet", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1468,6 +1549,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta1.StatefulSetList;
+
       /**
       * Create a apps.v1beta1.StatefulSetList resource with the given unique name, arguments, and options.
       *
@@ -1482,6 +1565,7 @@ export namespace apps {
           inputs["kind"] = "StatefulSetList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1beta1:StatefulSetList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1534,6 +1618,8 @@ export namespace apps {
       public readonly revision: pulumi.Output<number>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta2.ControllerRevision;
+
       /**
       * Create a apps.v1beta2.ControllerRevision resource with the given unique name, arguments, and options.
       *
@@ -1549,6 +1635,7 @@ export namespace apps {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["revision"] = args ? args.revision : undefined;
           super("kubernetes:apps/v1beta2:ControllerRevision", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1583,6 +1670,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta2.ControllerRevisionList;
+
       /**
       * Create a apps.v1beta2.ControllerRevisionList resource with the given unique name, arguments, and options.
       *
@@ -1597,6 +1686,7 @@ export namespace apps {
           inputs["kind"] = "ControllerRevisionList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1beta2:ControllerRevisionList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1641,6 +1731,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1beta2.DaemonSetStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta2.DaemonSet;
+
       /**
       * Create a apps.v1beta2.DaemonSet resource with the given unique name, arguments, and options.
       *
@@ -1656,6 +1748,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1beta2:DaemonSet", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1691,6 +1784,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta2.DaemonSetList;
+
       /**
       * Create a apps.v1beta2.DaemonSetList resource with the given unique name, arguments, and options.
       *
@@ -1705,6 +1800,7 @@ export namespace apps {
           inputs["kind"] = "DaemonSetList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1beta2:DaemonSetList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1746,6 +1842,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1beta2.DeploymentStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta2.Deployment;
+
       /**
       * Create a apps.v1beta2.Deployment resource with the given unique name, arguments, and options.
       *
@@ -1761,6 +1859,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1beta2:Deployment", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1795,6 +1894,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta2.DeploymentList;
+
       /**
       * Create a apps.v1beta2.DeploymentList resource with the given unique name, arguments, and options.
       *
@@ -1809,6 +1910,7 @@ export namespace apps {
           inputs["kind"] = "DeploymentList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1beta2:DeploymentList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1855,6 +1957,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1beta2.ReplicaSetStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta2.ReplicaSet;
+
       /**
       * Create a apps.v1beta2.ReplicaSet resource with the given unique name, arguments, and options.
       *
@@ -1870,6 +1974,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1beta2:ReplicaSet", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1906,6 +2011,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta2.ReplicaSetList;
+
       /**
       * Create a apps.v1beta2.ReplicaSetList resource with the given unique name, arguments, and options.
       *
@@ -1920,6 +2027,7 @@ export namespace apps {
           inputs["kind"] = "ReplicaSetList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1beta2:ReplicaSetList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -1963,6 +2071,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1beta2.ScaleStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta2.Scale;
+
       /**
       * Create a apps.v1beta2.Scale resource with the given unique name, arguments, and options.
       *
@@ -1978,6 +2088,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1beta2:Scale", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2022,6 +2133,8 @@ export namespace apps {
       public readonly status: pulumi.Output<outputApi.apps.v1beta2.StatefulSetStatus>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta2.StatefulSet;
+
       /**
       * Create a apps.v1beta2.StatefulSet resource with the given unique name, arguments, and options.
       *
@@ -2037,6 +2150,7 @@ export namespace apps {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:apps/v1beta2:StatefulSet", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2067,6 +2181,8 @@ export namespace apps {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.apps.v1beta2.StatefulSetList;
+
       /**
       * Create a apps.v1beta2.StatefulSetList resource with the given unique name, arguments, and options.
       *
@@ -2081,6 +2197,7 @@ export namespace apps {
           inputs["kind"] = "StatefulSetList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:apps/v1beta2:StatefulSetList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2125,6 +2242,8 @@ export namespace authentication {
       public readonly status: pulumi.Output<outputApi.authentication.v1.TokenReviewStatus>;
 
 
+      public readonly inputs?: inputApi.authentication.v1.TokenReview;
+
       /**
       * Create a authentication.v1.TokenReview resource with the given unique name, arguments, and options.
       *
@@ -2140,6 +2259,7 @@ export namespace authentication {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:authentication/v1:TokenReview", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2181,6 +2301,8 @@ export namespace authentication {
       public readonly status: pulumi.Output<outputApi.authentication.v1beta1.TokenReviewStatus>;
 
 
+      public readonly inputs?: inputApi.authentication.v1beta1.TokenReview;
+
       /**
       * Create a authentication.v1beta1.TokenReview resource with the given unique name, arguments, and options.
       *
@@ -2196,6 +2318,7 @@ export namespace authentication {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:authentication/v1beta1:TokenReview", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2242,6 +2365,8 @@ export namespace authorization {
       public readonly status: pulumi.Output<outputApi.authorization.v1.SubjectAccessReviewStatus>;
 
 
+      public readonly inputs?: inputApi.authorization.v1.LocalSubjectAccessReview;
+
       /**
       * Create a authorization.v1.LocalSubjectAccessReview resource with the given unique name, arguments, and options.
       *
@@ -2257,6 +2382,7 @@ export namespace authorization {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:authorization/v1:LocalSubjectAccessReview", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2296,6 +2422,8 @@ export namespace authorization {
       public readonly status: pulumi.Output<outputApi.authorization.v1.SubjectAccessReviewStatus>;
 
 
+      public readonly inputs?: inputApi.authorization.v1.SelfSubjectAccessReview;
+
       /**
       * Create a authorization.v1.SelfSubjectAccessReview resource with the given unique name, arguments, and options.
       *
@@ -2311,6 +2439,7 @@ export namespace authorization {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:authorization/v1:SelfSubjectAccessReview", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2355,6 +2484,8 @@ export namespace authorization {
       public readonly status: pulumi.Output<outputApi.authorization.v1.SubjectRulesReviewStatus>;
 
 
+      public readonly inputs?: inputApi.authorization.v1.SelfSubjectRulesReview;
+
       /**
       * Create a authorization.v1.SelfSubjectRulesReview resource with the given unique name, arguments, and options.
       *
@@ -2370,6 +2501,7 @@ export namespace authorization {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:authorization/v1:SelfSubjectRulesReview", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2407,6 +2539,8 @@ export namespace authorization {
       public readonly status: pulumi.Output<outputApi.authorization.v1.SubjectAccessReviewStatus>;
 
 
+      public readonly inputs?: inputApi.authorization.v1.SubjectAccessReview;
+
       /**
       * Create a authorization.v1.SubjectAccessReview resource with the given unique name, arguments, and options.
       *
@@ -2422,6 +2556,7 @@ export namespace authorization {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:authorization/v1:SubjectAccessReview", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2465,6 +2600,8 @@ export namespace authorization {
       public readonly status: pulumi.Output<outputApi.authorization.v1beta1.SubjectAccessReviewStatus>;
 
 
+      public readonly inputs?: inputApi.authorization.v1beta1.LocalSubjectAccessReview;
+
       /**
       * Create a authorization.v1beta1.LocalSubjectAccessReview resource with the given unique name, arguments, and options.
       *
@@ -2480,6 +2617,7 @@ export namespace authorization {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:authorization/v1beta1:LocalSubjectAccessReview", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2519,6 +2657,8 @@ export namespace authorization {
       public readonly status: pulumi.Output<outputApi.authorization.v1beta1.SubjectAccessReviewStatus>;
 
 
+      public readonly inputs?: inputApi.authorization.v1beta1.SelfSubjectAccessReview;
+
       /**
       * Create a authorization.v1beta1.SelfSubjectAccessReview resource with the given unique name, arguments, and options.
       *
@@ -2534,6 +2674,7 @@ export namespace authorization {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:authorization/v1beta1:SelfSubjectAccessReview", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2578,6 +2719,8 @@ export namespace authorization {
       public readonly status: pulumi.Output<outputApi.authorization.v1beta1.SubjectRulesReviewStatus>;
 
 
+      public readonly inputs?: inputApi.authorization.v1beta1.SelfSubjectRulesReview;
+
       /**
       * Create a authorization.v1beta1.SelfSubjectRulesReview resource with the given unique name, arguments, and options.
       *
@@ -2593,6 +2736,7 @@ export namespace authorization {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:authorization/v1beta1:SelfSubjectRulesReview", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2630,6 +2774,8 @@ export namespace authorization {
       public readonly status: pulumi.Output<outputApi.authorization.v1beta1.SubjectAccessReviewStatus>;
 
 
+      public readonly inputs?: inputApi.authorization.v1beta1.SubjectAccessReview;
+
       /**
       * Create a authorization.v1beta1.SubjectAccessReview resource with the given unique name, arguments, and options.
       *
@@ -2645,6 +2791,7 @@ export namespace authorization {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:authorization/v1beta1:SubjectAccessReview", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2676,6 +2823,8 @@ export namespace autoscaling {
       public readonly name: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.autoscaling.v1.CrossVersionObjectReference;
+
       /**
       * Create a autoscaling.v1.CrossVersionObjectReference resource with the given unique name, arguments, and options.
       *
@@ -2689,6 +2838,7 @@ export namespace autoscaling {
           inputs["kind"] = "CrossVersionObjectReference";
           inputs["name"] = args ? args.name : undefined;
           super("kubernetes:autoscaling/v1:CrossVersionObjectReference", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2730,6 +2880,8 @@ export namespace autoscaling {
       public readonly status: pulumi.Output<outputApi.autoscaling.v1.HorizontalPodAutoscalerStatus>;
 
 
+      public readonly inputs?: inputApi.autoscaling.v1.HorizontalPodAutoscaler;
+
       /**
       * Create a autoscaling.v1.HorizontalPodAutoscaler resource with the given unique name, arguments, and options.
       *
@@ -2745,6 +2897,7 @@ export namespace autoscaling {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:autoscaling/v1:HorizontalPodAutoscaler", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2779,6 +2932,8 @@ export namespace autoscaling {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.autoscaling.v1.HorizontalPodAutoscalerList;
+
       /**
       * Create a autoscaling.v1.HorizontalPodAutoscalerList resource with the given unique name, arguments, and options.
       *
@@ -2793,6 +2948,7 @@ export namespace autoscaling {
           inputs["kind"] = "HorizontalPodAutoscalerList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:autoscaling/v1:HorizontalPodAutoscalerList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2836,6 +2992,8 @@ export namespace autoscaling {
       public readonly status: pulumi.Output<outputApi.autoscaling.v1.ScaleStatus>;
 
 
+      public readonly inputs?: inputApi.autoscaling.v1.Scale;
+
       /**
       * Create a autoscaling.v1.Scale resource with the given unique name, arguments, and options.
       *
@@ -2851,6 +3009,7 @@ export namespace autoscaling {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:autoscaling/v1:Scale", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2879,6 +3038,8 @@ export namespace autoscaling {
       public readonly name: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.autoscaling.v2beta1.CrossVersionObjectReference;
+
       /**
       * Create a autoscaling.v2beta1.CrossVersionObjectReference resource with the given unique name, arguments, and options.
       *
@@ -2892,6 +3053,7 @@ export namespace autoscaling {
           inputs["kind"] = "CrossVersionObjectReference";
           inputs["name"] = args ? args.name : undefined;
           super("kubernetes:autoscaling/v2beta1:CrossVersionObjectReference", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2935,6 +3097,8 @@ export namespace autoscaling {
       public readonly status: pulumi.Output<outputApi.autoscaling.v2beta1.HorizontalPodAutoscalerStatus>;
 
 
+      public readonly inputs?: inputApi.autoscaling.v2beta1.HorizontalPodAutoscaler;
+
       /**
       * Create a autoscaling.v2beta1.HorizontalPodAutoscaler resource with the given unique name, arguments, and options.
       *
@@ -2950,6 +3114,7 @@ export namespace autoscaling {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:autoscaling/v2beta1:HorizontalPodAutoscaler", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -2984,6 +3149,8 @@ export namespace autoscaling {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.autoscaling.v2beta1.HorizontalPodAutoscalerList;
+
       /**
       * Create a autoscaling.v2beta1.HorizontalPodAutoscalerList resource with the given unique name, arguments, and options.
       *
@@ -2998,6 +3165,7 @@ export namespace autoscaling {
           inputs["kind"] = "HorizontalPodAutoscalerList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:autoscaling/v2beta1:HorizontalPodAutoscalerList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3046,6 +3214,8 @@ export namespace batch {
       public readonly status: pulumi.Output<outputApi.batch.v1.JobStatus>;
 
 
+      public readonly inputs?: inputApi.batch.v1.Job;
+
       /**
       * Create a batch.v1.Job resource with the given unique name, arguments, and options.
       *
@@ -3061,6 +3231,7 @@ export namespace batch {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:batch/v1:Job", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3096,6 +3267,8 @@ export namespace batch {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.batch.v1.JobList;
+
       /**
       * Create a batch.v1.JobList resource with the given unique name, arguments, and options.
       *
@@ -3110,6 +3283,7 @@ export namespace batch {
           inputs["kind"] = "JobList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:batch/v1:JobList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3155,6 +3329,8 @@ export namespace batch {
       public readonly status: pulumi.Output<outputApi.batch.v1beta1.CronJobStatus>;
 
 
+      public readonly inputs?: inputApi.batch.v1beta1.CronJob;
+
       /**
       * Create a batch.v1beta1.CronJob resource with the given unique name, arguments, and options.
       *
@@ -3170,6 +3346,7 @@ export namespace batch {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:batch/v1beta1:CronJob", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3205,6 +3382,8 @@ export namespace batch {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.batch.v1beta1.CronJobList;
+
       /**
       * Create a batch.v1beta1.CronJobList resource with the given unique name, arguments, and options.
       *
@@ -3219,6 +3398,7 @@ export namespace batch {
           inputs["kind"] = "CronJobList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:batch/v1beta1:CronJobList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3264,6 +3444,8 @@ export namespace batch {
       public readonly status: pulumi.Output<outputApi.batch.v2alpha1.CronJobStatus>;
 
 
+      public readonly inputs?: inputApi.batch.v2alpha1.CronJob;
+
       /**
       * Create a batch.v2alpha1.CronJob resource with the given unique name, arguments, and options.
       *
@@ -3279,6 +3461,7 @@ export namespace batch {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:batch/v2alpha1:CronJob", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3314,6 +3497,8 @@ export namespace batch {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.batch.v2alpha1.CronJobList;
+
       /**
       * Create a batch.v2alpha1.CronJobList resource with the given unique name, arguments, and options.
       *
@@ -3328,6 +3513,7 @@ export namespace batch {
           inputs["kind"] = "CronJobList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:batch/v2alpha1:CronJobList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3371,6 +3557,8 @@ export namespace certificates {
       public readonly status: pulumi.Output<outputApi.certificates.v1beta1.CertificateSigningRequestStatus>;
 
 
+      public readonly inputs?: inputApi.certificates.v1beta1.CertificateSigningRequest;
+
       /**
       * Create a certificates.v1beta1.CertificateSigningRequest resource with the given unique name, arguments, and options.
       *
@@ -3386,6 +3574,7 @@ export namespace certificates {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:certificates/v1beta1:CertificateSigningRequest", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3414,6 +3603,8 @@ export namespace certificates {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.certificates.v1beta1.CertificateSigningRequestList;
+
       /**
       * Create a certificates.v1beta1.CertificateSigningRequestList resource with the given unique name, arguments, and options.
       *
@@ -3428,6 +3619,7 @@ export namespace certificates {
           inputs["kind"] = "CertificateSigningRequestList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:certificates/v1beta1:CertificateSigningRequestList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3470,6 +3662,8 @@ export namespace core {
       public readonly target: pulumi.Output<outputApi.core.v1.ObjectReference>;
 
 
+      public readonly inputs?: inputApi.core.v1.Binding;
+
       /**
       * Create a core.v1.Binding resource with the given unique name, arguments, and options.
       *
@@ -3484,6 +3678,7 @@ export namespace core {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["target"] = args ? args.target : undefined;
           super("kubernetes:core/v1:Binding", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3519,6 +3714,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ObjectMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.ComponentStatus;
+
       /**
       * Create a core.v1.ComponentStatus resource with the given unique name, arguments, and options.
       *
@@ -3533,6 +3730,7 @@ export namespace core {
           inputs["kind"] = "ComponentStatus";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:ComponentStatus", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3568,6 +3766,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.ComponentStatusList;
+
       /**
       * Create a core.v1.ComponentStatusList resource with the given unique name, arguments, and options.
       *
@@ -3582,6 +3782,7 @@ export namespace core {
           inputs["kind"] = "ComponentStatusList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:ComponentStatusList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3618,6 +3819,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ObjectMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.ConfigMap;
+
       /**
       * Create a core.v1.ConfigMap resource with the given unique name, arguments, and options.
       *
@@ -3632,6 +3835,7 @@ export namespace core {
           inputs["kind"] = "ConfigMap";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:ConfigMap", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3666,6 +3870,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.ConfigMapList;
+
       /**
       * Create a core.v1.ConfigMapList resource with the given unique name, arguments, and options.
       *
@@ -3680,6 +3886,7 @@ export namespace core {
           inputs["kind"] = "ConfigMapList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:ConfigMapList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3731,6 +3938,8 @@ export namespace core {
       public readonly subsets: pulumi.Output<outputApi.core.v1.EndpointSubset[]>;
 
 
+      public readonly inputs?: inputApi.core.v1.Endpoints;
+
       /**
       * Create a core.v1.Endpoints resource with the given unique name, arguments, and options.
       *
@@ -3745,6 +3954,7 @@ export namespace core {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["subsets"] = args ? args.subsets : undefined;
           super("kubernetes:core/v1:Endpoints", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3780,6 +3990,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.EndpointsList;
+
       /**
       * Create a core.v1.EndpointsList resource with the given unique name, arguments, and options.
       *
@@ -3794,6 +4006,7 @@ export namespace core {
           inputs["kind"] = "EndpointsList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:EndpointsList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3895,6 +4108,8 @@ export namespace core {
       public readonly type: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.core.v1.Event;
+
       /**
       * Create a core.v1.Event resource with the given unique name, arguments, and options.
       *
@@ -3922,6 +4137,7 @@ export namespace core {
           inputs["source"] = args ? args.source : undefined;
           inputs["type"] = args ? args.type : undefined;
           super("kubernetes:core/v1:Event", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -3957,6 +4173,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.EventList;
+
       /**
       * Create a core.v1.EventList resource with the given unique name, arguments, and options.
       *
@@ -3971,6 +4189,7 @@ export namespace core {
           inputs["kind"] = "EventList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:EventList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4007,6 +4226,8 @@ export namespace core {
       public readonly spec: pulumi.Output<outputApi.core.v1.LimitRangeSpec>;
 
 
+      public readonly inputs?: inputApi.core.v1.LimitRange;
+
       /**
       * Create a core.v1.LimitRange resource with the given unique name, arguments, and options.
       *
@@ -4021,6 +4242,7 @@ export namespace core {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["spec"] = args ? args.spec : undefined;
           super("kubernetes:core/v1:LimitRange", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4057,6 +4279,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.LimitRangeList;
+
       /**
       * Create a core.v1.LimitRangeList resource with the given unique name, arguments, and options.
       *
@@ -4071,6 +4295,7 @@ export namespace core {
           inputs["kind"] = "LimitRangeList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:LimitRangeList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4113,6 +4338,8 @@ export namespace core {
       public readonly status: pulumi.Output<outputApi.core.v1.NamespaceStatus>;
 
 
+      public readonly inputs?: inputApi.core.v1.Namespace;
+
       /**
       * Create a core.v1.Namespace resource with the given unique name, arguments, and options.
       *
@@ -4128,6 +4355,7 @@ export namespace core {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:core/v1:Namespace", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4164,6 +4392,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.NamespaceList;
+
       /**
       * Create a core.v1.NamespaceList resource with the given unique name, arguments, and options.
       *
@@ -4178,6 +4408,7 @@ export namespace core {
           inputs["kind"] = "NamespaceList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:NamespaceList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4221,6 +4452,8 @@ export namespace core {
       public readonly status: pulumi.Output<outputApi.core.v1.NodeStatus>;
 
 
+      public readonly inputs?: inputApi.core.v1.Node;
+
       /**
       * Create a core.v1.Node resource with the given unique name, arguments, and options.
       *
@@ -4236,6 +4469,7 @@ export namespace core {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:core/v1:Node", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4264,6 +4498,8 @@ export namespace core {
       public readonly kind: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.core.v1.NodeConfigSource;
+
       /**
       * Create a core.v1.NodeConfigSource resource with the given unique name, arguments, and options.
       *
@@ -4277,6 +4513,7 @@ export namespace core {
           inputs["configMapRef"] = args ? args.configMapRef : undefined;
           inputs["kind"] = "NodeConfigSource";
           super("kubernetes:core/v1:NodeConfigSource", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4312,6 +4549,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.NodeList;
+
       /**
       * Create a core.v1.NodeList resource with the given unique name, arguments, and options.
       *
@@ -4326,6 +4565,7 @@ export namespace core {
           inputs["kind"] = "NodeList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:NodeList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4380,6 +4620,8 @@ export namespace core {
       public readonly uid: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.core.v1.ObjectReference;
+
       /**
       * Create a core.v1.ObjectReference resource with the given unique name, arguments, and options.
       *
@@ -4397,6 +4639,7 @@ export namespace core {
           inputs["resourceVersion"] = args ? args.resourceVersion : undefined;
           inputs["uid"] = args ? args.uid : undefined;
           super("kubernetes:core/v1:ObjectReference", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4442,6 +4685,8 @@ export namespace core {
       public readonly status: pulumi.Output<outputApi.core.v1.PersistentVolumeStatus>;
 
 
+      public readonly inputs?: inputApi.core.v1.PersistentVolume;
+
       /**
       * Create a core.v1.PersistentVolume resource with the given unique name, arguments, and options.
       *
@@ -4457,6 +4702,7 @@ export namespace core {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:core/v1:PersistentVolume", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4500,6 +4746,8 @@ export namespace core {
       public readonly status: pulumi.Output<outputApi.core.v1.PersistentVolumeClaimStatus>;
 
 
+      public readonly inputs?: inputApi.core.v1.PersistentVolumeClaim;
+
       /**
       * Create a core.v1.PersistentVolumeClaim resource with the given unique name, arguments, and options.
       *
@@ -4515,6 +4763,7 @@ export namespace core {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:core/v1:PersistentVolumeClaim", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4551,6 +4800,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.PersistentVolumeClaimList;
+
       /**
       * Create a core.v1.PersistentVolumeClaimList resource with the given unique name, arguments, and options.
       *
@@ -4565,6 +4816,7 @@ export namespace core {
           inputs["kind"] = "PersistentVolumeClaimList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:PersistentVolumeClaimList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4601,6 +4853,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.PersistentVolumeList;
+
       /**
       * Create a core.v1.PersistentVolumeList resource with the given unique name, arguments, and options.
       *
@@ -4615,6 +4869,7 @@ export namespace core {
           inputs["kind"] = "PersistentVolumeList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:PersistentVolumeList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4659,6 +4914,8 @@ export namespace core {
       public readonly status: pulumi.Output<outputApi.core.v1.PodStatus>;
 
 
+      public readonly inputs?: inputApi.core.v1.Pod;
+
       /**
       * Create a core.v1.Pod resource with the given unique name, arguments, and options.
       *
@@ -4674,6 +4931,7 @@ export namespace core {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:core/v1:Pod", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4709,6 +4967,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.PodList;
+
       /**
       * Create a core.v1.PodList resource with the given unique name, arguments, and options.
       *
@@ -4723,6 +4983,7 @@ export namespace core {
           inputs["kind"] = "PodList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:PodList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4759,6 +5020,8 @@ export namespace core {
       public readonly template: pulumi.Output<outputApi.core.v1.PodTemplateSpec>;
 
 
+      public readonly inputs?: inputApi.core.v1.PodTemplate;
+
       /**
       * Create a core.v1.PodTemplate resource with the given unique name, arguments, and options.
       *
@@ -4773,6 +5036,7 @@ export namespace core {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["template"] = args ? args.template : undefined;
           super("kubernetes:core/v1:PodTemplate", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4808,6 +5072,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.PodTemplateList;
+
       /**
       * Create a core.v1.PodTemplateList resource with the given unique name, arguments, and options.
       *
@@ -4822,6 +5088,7 @@ export namespace core {
           inputs["kind"] = "PodTemplateList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:PodTemplateList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4866,6 +5133,8 @@ export namespace core {
       public readonly status: pulumi.Output<outputApi.core.v1.ReplicationControllerStatus>;
 
 
+      public readonly inputs?: inputApi.core.v1.ReplicationController;
+
       /**
       * Create a core.v1.ReplicationController resource with the given unique name, arguments, and options.
       *
@@ -4881,6 +5150,7 @@ export namespace core {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:core/v1:ReplicationController", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4917,6 +5187,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.ReplicationControllerList;
+
       /**
       * Create a core.v1.ReplicationControllerList resource with the given unique name, arguments, and options.
       *
@@ -4931,6 +5203,7 @@ export namespace core {
           inputs["kind"] = "ReplicationControllerList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:ReplicationControllerList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -4973,6 +5246,8 @@ export namespace core {
       public readonly status: pulumi.Output<outputApi.core.v1.ResourceQuotaStatus>;
 
 
+      public readonly inputs?: inputApi.core.v1.ResourceQuota;
+
       /**
       * Create a core.v1.ResourceQuota resource with the given unique name, arguments, and options.
       *
@@ -4988,6 +5263,7 @@ export namespace core {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:core/v1:ResourceQuota", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5024,6 +5300,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.ResourceQuotaList;
+
       /**
       * Create a core.v1.ResourceQuotaList resource with the given unique name, arguments, and options.
       *
@@ -5038,6 +5316,7 @@ export namespace core {
           inputs["kind"] = "ResourceQuotaList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:ResourceQuotaList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5089,6 +5368,8 @@ export namespace core {
       public readonly type: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.core.v1.Secret;
+
       /**
       * Create a core.v1.Secret resource with the given unique name, arguments, and options.
       *
@@ -5105,6 +5386,7 @@ export namespace core {
           inputs["stringData"] = args ? args.stringData : undefined;
           inputs["type"] = args ? args.type : undefined;
           super("kubernetes:core/v1:Secret", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5141,6 +5423,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.SecretList;
+
       /**
       * Create a core.v1.SecretList resource with the given unique name, arguments, and options.
       *
@@ -5155,6 +5439,7 @@ export namespace core {
           inputs["kind"] = "SecretList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:SecretList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5199,6 +5484,8 @@ export namespace core {
       public readonly status: pulumi.Output<outputApi.core.v1.ServiceStatus>;
 
 
+      public readonly inputs?: inputApi.core.v1.Service;
+
       /**
       * Create a core.v1.Service resource with the given unique name, arguments, and options.
       *
@@ -5214,6 +5501,7 @@ export namespace core {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:core/v1:Service", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5267,6 +5555,8 @@ export namespace core {
       public readonly secrets: pulumi.Output<outputApi.core.v1.ObjectReference[]>;
 
 
+      public readonly inputs?: inputApi.core.v1.ServiceAccount;
+
       /**
       * Create a core.v1.ServiceAccount resource with the given unique name, arguments, and options.
       *
@@ -5283,6 +5573,7 @@ export namespace core {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["secrets"] = args ? args.secrets : undefined;
           super("kubernetes:core/v1:ServiceAccount", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5319,6 +5610,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.ServiceAccountList;
+
       /**
       * Create a core.v1.ServiceAccountList resource with the given unique name, arguments, and options.
       *
@@ -5333,6 +5626,7 @@ export namespace core {
           inputs["kind"] = "ServiceAccountList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:ServiceAccountList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5368,6 +5662,8 @@ export namespace core {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.core.v1.ServiceList;
+
       /**
       * Create a core.v1.ServiceList resource with the given unique name, arguments, and options.
       *
@@ -5382,6 +5678,7 @@ export namespace core {
           inputs["kind"] = "ServiceList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:core/v1:ServiceList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5490,6 +5787,8 @@ export namespace events {
       public readonly type: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.events.v1beta1.Event;
+
       /**
       * Create a events.v1beta1.Event resource with the given unique name, arguments, and options.
       *
@@ -5517,6 +5816,7 @@ export namespace events {
           inputs["series"] = args ? args.series : undefined;
           inputs["type"] = args ? args.type : undefined;
           super("kubernetes:events/v1beta1:Event", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5552,6 +5852,8 @@ export namespace events {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.events.v1beta1.EventList;
+
       /**
       * Create a events.v1beta1.EventList resource with the given unique name, arguments, and options.
       *
@@ -5566,6 +5868,7 @@ export namespace events {
           inputs["kind"] = "EventList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:events/v1beta1:EventList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5616,6 +5919,8 @@ export namespace extensions {
       public readonly status: pulumi.Output<outputApi.extensions.v1beta1.DaemonSetStatus>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.DaemonSet;
+
       /**
       * Create a extensions.v1beta1.DaemonSet resource with the given unique name, arguments, and options.
       *
@@ -5631,6 +5936,7 @@ export namespace extensions {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:extensions/v1beta1:DaemonSet", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5666,6 +5972,8 @@ export namespace extensions {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.DaemonSetList;
+
       /**
       * Create a extensions.v1beta1.DaemonSetList resource with the given unique name, arguments, and options.
       *
@@ -5680,6 +5988,7 @@ export namespace extensions {
           inputs["kind"] = "DaemonSetList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:extensions/v1beta1:DaemonSetList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5721,6 +6030,8 @@ export namespace extensions {
       public readonly status: pulumi.Output<outputApi.extensions.v1beta1.DeploymentStatus>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.Deployment;
+
       /**
       * Create a extensions.v1beta1.Deployment resource with the given unique name, arguments, and options.
       *
@@ -5736,6 +6047,7 @@ export namespace extensions {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:extensions/v1beta1:Deployment", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5770,6 +6082,8 @@ export namespace extensions {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.DeploymentList;
+
       /**
       * Create a extensions.v1beta1.DeploymentList resource with the given unique name, arguments, and options.
       *
@@ -5784,6 +6098,7 @@ export namespace extensions {
           inputs["kind"] = "DeploymentList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:extensions/v1beta1:DeploymentList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5823,6 +6138,8 @@ export namespace extensions {
       public readonly updatedAnnotations: pulumi.Output<object>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.DeploymentRollback;
+
       /**
       * Create a extensions.v1beta1.DeploymentRollback resource with the given unique name, arguments, and options.
       *
@@ -5838,6 +6155,7 @@ export namespace extensions {
           inputs["rollbackTo"] = args ? args.rollbackTo : undefined;
           inputs["updatedAnnotations"] = args ? args.updatedAnnotations : undefined;
           super("kubernetes:extensions/v1beta1:DeploymentRollback", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5882,6 +6200,8 @@ export namespace extensions {
       public readonly status: pulumi.Output<outputApi.extensions.v1beta1.IngressStatus>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.Ingress;
+
       /**
       * Create a extensions.v1beta1.Ingress resource with the given unique name, arguments, and options.
       *
@@ -5897,6 +6217,7 @@ export namespace extensions {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:extensions/v1beta1:Ingress", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5932,6 +6253,8 @@ export namespace extensions {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.IngressList;
+
       /**
       * Create a extensions.v1beta1.IngressList resource with the given unique name, arguments, and options.
       *
@@ -5946,6 +6269,7 @@ export namespace extensions {
           inputs["kind"] = "IngressList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:extensions/v1beta1:IngressList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -5983,6 +6307,8 @@ export namespace extensions {
       public readonly spec: pulumi.Output<outputApi.extensions.v1beta1.NetworkPolicySpec>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.NetworkPolicy;
+
       /**
       * Create a extensions.v1beta1.NetworkPolicy resource with the given unique name, arguments, and options.
       *
@@ -5997,6 +6323,7 @@ export namespace extensions {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["spec"] = args ? args.spec : undefined;
           super("kubernetes:extensions/v1beta1:NetworkPolicy", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6033,6 +6360,8 @@ export namespace extensions {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.NetworkPolicyList;
+
       /**
       * Create a extensions.v1beta1.NetworkPolicyList resource with the given unique name, arguments, and options.
       *
@@ -6047,6 +6376,7 @@ export namespace extensions {
           inputs["kind"] = "NetworkPolicyList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:extensions/v1beta1:NetworkPolicyList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6083,6 +6413,8 @@ export namespace extensions {
       public readonly spec: pulumi.Output<outputApi.extensions.v1beta1.PodSecurityPolicySpec>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.PodSecurityPolicy;
+
       /**
       * Create a extensions.v1beta1.PodSecurityPolicy resource with the given unique name, arguments, and options.
       *
@@ -6097,6 +6429,7 @@ export namespace extensions {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["spec"] = args ? args.spec : undefined;
           super("kubernetes:extensions/v1beta1:PodSecurityPolicy", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6132,6 +6465,8 @@ export namespace extensions {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.PodSecurityPolicyList;
+
       /**
       * Create a extensions.v1beta1.PodSecurityPolicyList resource with the given unique name, arguments, and options.
       *
@@ -6146,6 +6481,7 @@ export namespace extensions {
           inputs["kind"] = "PodSecurityPolicyList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:extensions/v1beta1:PodSecurityPolicyList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6192,6 +6528,8 @@ export namespace extensions {
       public readonly status: pulumi.Output<outputApi.extensions.v1beta1.ReplicaSetStatus>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.ReplicaSet;
+
       /**
       * Create a extensions.v1beta1.ReplicaSet resource with the given unique name, arguments, and options.
       *
@@ -6207,6 +6545,7 @@ export namespace extensions {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:extensions/v1beta1:ReplicaSet", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6243,6 +6582,8 @@ export namespace extensions {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.ReplicaSetList;
+
       /**
       * Create a extensions.v1beta1.ReplicaSetList resource with the given unique name, arguments, and options.
       *
@@ -6257,6 +6598,7 @@ export namespace extensions {
           inputs["kind"] = "ReplicaSetList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:extensions/v1beta1:ReplicaSetList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6300,6 +6642,8 @@ export namespace extensions {
       public readonly status: pulumi.Output<outputApi.extensions.v1beta1.ScaleStatus>;
 
 
+      public readonly inputs?: inputApi.extensions.v1beta1.Scale;
+
       /**
       * Create a extensions.v1beta1.Scale resource with the given unique name, arguments, and options.
       *
@@ -6315,6 +6659,7 @@ export namespace extensions {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:extensions/v1beta1:Scale", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6372,6 +6717,8 @@ export namespace meta {
       public readonly versions: pulumi.Output<outputApi.meta.v1.GroupVersionForDiscovery[]>;
 
 
+      public readonly inputs?: inputApi.meta.v1.APIGroup;
+
       /**
       * Create a meta.v1.APIGroup resource with the given unique name, arguments, and options.
       *
@@ -6388,6 +6735,7 @@ export namespace meta {
           inputs["serverAddressByClientCIDRs"] = args ? args.serverAddressByClientCIDRs : undefined;
           inputs["versions"] = args ? args.versions : undefined;
           super("kubernetes:meta/v1:APIGroup", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6417,6 +6765,8 @@ export namespace meta {
       public readonly kind: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.meta.v1.APIGroupList;
+
       /**
       * Create a meta.v1.APIGroupList resource with the given unique name, arguments, and options.
       *
@@ -6430,6 +6780,7 @@ export namespace meta {
           inputs["groups"] = args ? args.groups : undefined;
           inputs["kind"] = "APIGroupList";
           super("kubernetes:meta/v1:APIGroupList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6465,6 +6816,8 @@ export namespace meta {
       public readonly resources: pulumi.Output<outputApi.meta.v1.APIResource[]>;
 
 
+      public readonly inputs?: inputApi.meta.v1.APIResourceList;
+
       /**
       * Create a meta.v1.APIResourceList resource with the given unique name, arguments, and options.
       *
@@ -6479,6 +6832,7 @@ export namespace meta {
           inputs["kind"] = "APIResourceList";
           inputs["resources"] = args ? args.resources : undefined;
           super("kubernetes:meta/v1:APIResourceList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6520,6 +6874,8 @@ export namespace meta {
       public readonly versions: pulumi.Output<string[]>;
 
 
+      public readonly inputs?: inputApi.meta.v1.APIVersions;
+
       /**
       * Create a meta.v1.APIVersions resource with the given unique name, arguments, and options.
       *
@@ -6534,6 +6890,7 @@ export namespace meta {
           inputs["serverAddressByClientCIDRs"] = args ? args.serverAddressByClientCIDRs : undefined;
           inputs["versions"] = args ? args.versions : undefined;
           super("kubernetes:meta/v1:APIVersions", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6590,6 +6947,8 @@ export namespace meta {
       public readonly propagationPolicy: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.meta.v1.DeleteOptions;
+
       /**
       * Create a meta.v1.DeleteOptions resource with the given unique name, arguments, and options.
       *
@@ -6606,6 +6965,7 @@ export namespace meta {
           inputs["preconditions"] = args ? args.preconditions : undefined;
           inputs["propagationPolicy"] = args ? args.propagationPolicy : undefined;
           super("kubernetes:meta/v1:DeleteOptions", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6649,6 +7009,8 @@ export namespace meta {
       public readonly uid: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.meta.v1.OwnerReference;
+
       /**
       * Create a meta.v1.OwnerReference resource with the given unique name, arguments, and options.
       *
@@ -6665,6 +7027,7 @@ export namespace meta {
           inputs["name"] = args ? args.name : undefined;
           inputs["uid"] = args ? args.uid : undefined;
           super("kubernetes:meta/v1:OwnerReference", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6725,6 +7088,8 @@ export namespace meta {
       public readonly status: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.meta.v1.Status;
+
       /**
       * Create a meta.v1.Status resource with the given unique name, arguments, and options.
       *
@@ -6743,6 +7108,7 @@ export namespace meta {
           inputs["reason"] = args ? args.reason : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:meta/v1:Status", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6784,6 +7150,8 @@ export namespace networking {
       public readonly spec: pulumi.Output<outputApi.networking.v1.NetworkPolicySpec>;
 
 
+      public readonly inputs?: inputApi.networking.v1.NetworkPolicy;
+
       /**
       * Create a networking.v1.NetworkPolicy resource with the given unique name, arguments, and options.
       *
@@ -6798,6 +7166,7 @@ export namespace networking {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["spec"] = args ? args.spec : undefined;
           super("kubernetes:networking/v1:NetworkPolicy", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6833,6 +7202,8 @@ export namespace networking {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.networking.v1.NetworkPolicyList;
+
       /**
       * Create a networking.v1.NetworkPolicyList resource with the given unique name, arguments, and options.
       *
@@ -6847,6 +7218,7 @@ export namespace networking {
           inputs["kind"] = "NetworkPolicyList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:networking/v1:NetworkPolicyList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6889,6 +7261,8 @@ export namespace policy {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ObjectMeta>;
 
 
+      public readonly inputs?: inputApi.policy.v1beta1.Eviction;
+
       /**
       * Create a policy.v1beta1.Eviction resource with the given unique name, arguments, and options.
       *
@@ -6903,6 +7277,7 @@ export namespace policy {
           inputs["kind"] = "Eviction";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:policy/v1beta1:Eviction", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6941,6 +7316,8 @@ export namespace policy {
       public readonly status: pulumi.Output<outputApi.policy.v1beta1.PodDisruptionBudgetStatus>;
 
 
+      public readonly inputs?: inputApi.policy.v1beta1.PodDisruptionBudget;
+
       /**
       * Create a policy.v1beta1.PodDisruptionBudget resource with the given unique name, arguments, and options.
       *
@@ -6956,6 +7333,7 @@ export namespace policy {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:policy/v1beta1:PodDisruptionBudget", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -6986,6 +7364,8 @@ export namespace policy {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.policy.v1beta1.PodDisruptionBudgetList;
+
       /**
       * Create a policy.v1beta1.PodDisruptionBudgetList resource with the given unique name, arguments, and options.
       *
@@ -7000,6 +7380,7 @@ export namespace policy {
           inputs["kind"] = "PodDisruptionBudgetList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:policy/v1beta1:PodDisruptionBudgetList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7048,6 +7429,8 @@ export namespace rbac {
       public readonly rules: pulumi.Output<outputApi.rbac.v1.PolicyRule[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1.ClusterRole;
+
       /**
       * Create a rbac.v1.ClusterRole resource with the given unique name, arguments, and options.
       *
@@ -7063,6 +7446,7 @@ export namespace rbac {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["rules"] = args ? args.rules : undefined;
           super("kubernetes:rbac/v1:ClusterRole", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7104,6 +7488,8 @@ export namespace rbac {
       public readonly subjects: pulumi.Output<outputApi.rbac.v1.Subject[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1.ClusterRoleBinding;
+
       /**
       * Create a rbac.v1.ClusterRoleBinding resource with the given unique name, arguments, and options.
       *
@@ -7119,6 +7505,7 @@ export namespace rbac {
           inputs["roleRef"] = args ? args.roleRef : undefined;
           inputs["subjects"] = args ? args.subjects : undefined;
           super("kubernetes:rbac/v1:ClusterRoleBinding", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7153,6 +7540,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1.ClusterRoleBindingList;
+
       /**
       * Create a rbac.v1.ClusterRoleBindingList resource with the given unique name, arguments, and options.
       *
@@ -7167,6 +7556,7 @@ export namespace rbac {
           inputs["kind"] = "ClusterRoleBindingList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1:ClusterRoleBindingList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7201,6 +7591,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1.ClusterRoleList;
+
       /**
       * Create a rbac.v1.ClusterRoleList resource with the given unique name, arguments, and options.
       *
@@ -7215,6 +7607,7 @@ export namespace rbac {
           inputs["kind"] = "ClusterRoleList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1:ClusterRoleList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7250,6 +7643,8 @@ export namespace rbac {
       public readonly rules: pulumi.Output<outputApi.rbac.v1.PolicyRule[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1.Role;
+
       /**
       * Create a rbac.v1.Role resource with the given unique name, arguments, and options.
       *
@@ -7264,6 +7659,7 @@ export namespace rbac {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["rules"] = args ? args.rules : undefined;
           super("kubernetes:rbac/v1:Role", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7307,6 +7703,8 @@ export namespace rbac {
       public readonly subjects: pulumi.Output<outputApi.rbac.v1.Subject[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1.RoleBinding;
+
       /**
       * Create a rbac.v1.RoleBinding resource with the given unique name, arguments, and options.
       *
@@ -7322,6 +7720,7 @@ export namespace rbac {
           inputs["roleRef"] = args ? args.roleRef : undefined;
           inputs["subjects"] = args ? args.subjects : undefined;
           super("kubernetes:rbac/v1:RoleBinding", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7356,6 +7755,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1.RoleBindingList;
+
       /**
       * Create a rbac.v1.RoleBindingList resource with the given unique name, arguments, and options.
       *
@@ -7370,6 +7771,7 @@ export namespace rbac {
           inputs["kind"] = "RoleBindingList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1:RoleBindingList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7404,6 +7806,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1.RoleList;
+
       /**
       * Create a rbac.v1.RoleList resource with the given unique name, arguments, and options.
       *
@@ -7418,6 +7822,7 @@ export namespace rbac {
           inputs["kind"] = "RoleList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1:RoleList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7463,6 +7868,8 @@ export namespace rbac {
       public readonly rules: pulumi.Output<outputApi.rbac.v1alpha1.PolicyRule[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1alpha1.ClusterRole;
+
       /**
       * Create a rbac.v1alpha1.ClusterRole resource with the given unique name, arguments, and options.
       *
@@ -7478,6 +7885,7 @@ export namespace rbac {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["rules"] = args ? args.rules : undefined;
           super("kubernetes:rbac/v1alpha1:ClusterRole", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7519,6 +7927,8 @@ export namespace rbac {
       public readonly subjects: pulumi.Output<outputApi.rbac.v1alpha1.Subject[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1alpha1.ClusterRoleBinding;
+
       /**
       * Create a rbac.v1alpha1.ClusterRoleBinding resource with the given unique name, arguments, and options.
       *
@@ -7534,6 +7944,7 @@ export namespace rbac {
           inputs["roleRef"] = args ? args.roleRef : undefined;
           inputs["subjects"] = args ? args.subjects : undefined;
           super("kubernetes:rbac/v1alpha1:ClusterRoleBinding", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7568,6 +7979,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1alpha1.ClusterRoleBindingList;
+
       /**
       * Create a rbac.v1alpha1.ClusterRoleBindingList resource with the given unique name, arguments, and options.
       *
@@ -7582,6 +7995,7 @@ export namespace rbac {
           inputs["kind"] = "ClusterRoleBindingList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1alpha1:ClusterRoleBindingList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7616,6 +8030,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1alpha1.ClusterRoleList;
+
       /**
       * Create a rbac.v1alpha1.ClusterRoleList resource with the given unique name, arguments, and options.
       *
@@ -7630,6 +8046,7 @@ export namespace rbac {
           inputs["kind"] = "ClusterRoleList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1alpha1:ClusterRoleList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7665,6 +8082,8 @@ export namespace rbac {
       public readonly rules: pulumi.Output<outputApi.rbac.v1alpha1.PolicyRule[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1alpha1.Role;
+
       /**
       * Create a rbac.v1alpha1.Role resource with the given unique name, arguments, and options.
       *
@@ -7679,6 +8098,7 @@ export namespace rbac {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["rules"] = args ? args.rules : undefined;
           super("kubernetes:rbac/v1alpha1:Role", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7722,6 +8142,8 @@ export namespace rbac {
       public readonly subjects: pulumi.Output<outputApi.rbac.v1alpha1.Subject[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1alpha1.RoleBinding;
+
       /**
       * Create a rbac.v1alpha1.RoleBinding resource with the given unique name, arguments, and options.
       *
@@ -7737,6 +8159,7 @@ export namespace rbac {
           inputs["roleRef"] = args ? args.roleRef : undefined;
           inputs["subjects"] = args ? args.subjects : undefined;
           super("kubernetes:rbac/v1alpha1:RoleBinding", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7771,6 +8194,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1alpha1.RoleBindingList;
+
       /**
       * Create a rbac.v1alpha1.RoleBindingList resource with the given unique name, arguments, and options.
       *
@@ -7785,6 +8210,7 @@ export namespace rbac {
           inputs["kind"] = "RoleBindingList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1alpha1:RoleBindingList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7819,6 +8245,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1alpha1.RoleList;
+
       /**
       * Create a rbac.v1alpha1.RoleList resource with the given unique name, arguments, and options.
       *
@@ -7833,6 +8261,7 @@ export namespace rbac {
           inputs["kind"] = "RoleList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1alpha1:RoleList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7868,6 +8297,8 @@ export namespace rbac {
       public readonly namespace: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.rbac.v1alpha1.Subject;
+
       /**
       * Create a rbac.v1alpha1.Subject resource with the given unique name, arguments, and options.
       *
@@ -7882,6 +8313,7 @@ export namespace rbac {
           inputs["name"] = args ? args.name : undefined;
           inputs["namespace"] = args ? args.namespace : undefined;
           super("kubernetes:rbac/v1alpha1:Subject", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7927,6 +8359,8 @@ export namespace rbac {
       public readonly rules: pulumi.Output<outputApi.rbac.v1beta1.PolicyRule[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1beta1.ClusterRole;
+
       /**
       * Create a rbac.v1beta1.ClusterRole resource with the given unique name, arguments, and options.
       *
@@ -7942,6 +8376,7 @@ export namespace rbac {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["rules"] = args ? args.rules : undefined;
           super("kubernetes:rbac/v1beta1:ClusterRole", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -7983,6 +8418,8 @@ export namespace rbac {
       public readonly subjects: pulumi.Output<outputApi.rbac.v1beta1.Subject[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1beta1.ClusterRoleBinding;
+
       /**
       * Create a rbac.v1beta1.ClusterRoleBinding resource with the given unique name, arguments, and options.
       *
@@ -7998,6 +8435,7 @@ export namespace rbac {
           inputs["roleRef"] = args ? args.roleRef : undefined;
           inputs["subjects"] = args ? args.subjects : undefined;
           super("kubernetes:rbac/v1beta1:ClusterRoleBinding", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8032,6 +8470,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1beta1.ClusterRoleBindingList;
+
       /**
       * Create a rbac.v1beta1.ClusterRoleBindingList resource with the given unique name, arguments, and options.
       *
@@ -8046,6 +8486,7 @@ export namespace rbac {
           inputs["kind"] = "ClusterRoleBindingList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1beta1:ClusterRoleBindingList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8080,6 +8521,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1beta1.ClusterRoleList;
+
       /**
       * Create a rbac.v1beta1.ClusterRoleList resource with the given unique name, arguments, and options.
       *
@@ -8094,6 +8537,7 @@ export namespace rbac {
           inputs["kind"] = "ClusterRoleList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1beta1:ClusterRoleList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8129,6 +8573,8 @@ export namespace rbac {
       public readonly rules: pulumi.Output<outputApi.rbac.v1beta1.PolicyRule[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1beta1.Role;
+
       /**
       * Create a rbac.v1beta1.Role resource with the given unique name, arguments, and options.
       *
@@ -8143,6 +8589,7 @@ export namespace rbac {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["rules"] = args ? args.rules : undefined;
           super("kubernetes:rbac/v1beta1:Role", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8186,6 +8633,8 @@ export namespace rbac {
       public readonly subjects: pulumi.Output<outputApi.rbac.v1beta1.Subject[]>;
 
 
+      public readonly inputs?: inputApi.rbac.v1beta1.RoleBinding;
+
       /**
       * Create a rbac.v1beta1.RoleBinding resource with the given unique name, arguments, and options.
       *
@@ -8201,6 +8650,7 @@ export namespace rbac {
           inputs["roleRef"] = args ? args.roleRef : undefined;
           inputs["subjects"] = args ? args.subjects : undefined;
           super("kubernetes:rbac/v1beta1:RoleBinding", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8235,6 +8685,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1beta1.RoleBindingList;
+
       /**
       * Create a rbac.v1beta1.RoleBindingList resource with the given unique name, arguments, and options.
       *
@@ -8249,6 +8701,7 @@ export namespace rbac {
           inputs["kind"] = "RoleBindingList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1beta1:RoleBindingList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8283,6 +8736,8 @@ export namespace rbac {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.rbac.v1beta1.RoleList;
+
       /**
       * Create a rbac.v1beta1.RoleList resource with the given unique name, arguments, and options.
       *
@@ -8297,6 +8752,7 @@ export namespace rbac {
           inputs["kind"] = "RoleList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:rbac/v1beta1:RoleList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8352,6 +8808,8 @@ export namespace scheduling {
       public readonly value: pulumi.Output<number>;
 
 
+      public readonly inputs?: inputApi.scheduling.v1alpha1.PriorityClass;
+
       /**
       * Create a scheduling.v1alpha1.PriorityClass resource with the given unique name, arguments, and options.
       *
@@ -8368,6 +8826,7 @@ export namespace scheduling {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["value"] = args ? args.value : undefined;
           super("kubernetes:scheduling/v1alpha1:PriorityClass", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8403,6 +8862,8 @@ export namespace scheduling {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.scheduling.v1alpha1.PriorityClassList;
+
       /**
       * Create a scheduling.v1alpha1.PriorityClassList resource with the given unique name, arguments, and options.
       *
@@ -8417,6 +8878,7 @@ export namespace scheduling {
           inputs["kind"] = "PriorityClassList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:scheduling/v1alpha1:PriorityClassList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8453,6 +8915,8 @@ export namespace settings {
       public readonly spec: pulumi.Output<outputApi.settings.v1alpha1.PodPresetSpec>;
 
 
+      public readonly inputs?: inputApi.settings.v1alpha1.PodPreset;
+
       /**
       * Create a settings.v1alpha1.PodPreset resource with the given unique name, arguments, and options.
       *
@@ -8467,6 +8931,7 @@ export namespace settings {
           inputs["metadata"] = args ? args.metadata : undefined;
           inputs["spec"] = args ? args.spec : undefined;
           super("kubernetes:settings/v1alpha1:PodPreset", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8502,6 +8967,8 @@ export namespace settings {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.settings.v1alpha1.PodPresetList;
+
       /**
       * Create a settings.v1alpha1.PodPresetList resource with the given unique name, arguments, and options.
       *
@@ -8516,6 +8983,7 @@ export namespace settings {
           inputs["kind"] = "PodPresetList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:settings/v1alpha1:PodPresetList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8592,6 +9060,8 @@ export namespace storage {
       public readonly volumeBindingMode: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.storage.v1.StorageClass;
+
       /**
       * Create a storage.v1.StorageClass resource with the given unique name, arguments, and options.
       *
@@ -8611,6 +9081,7 @@ export namespace storage {
           inputs["reclaimPolicy"] = args ? args.reclaimPolicy : undefined;
           inputs["volumeBindingMode"] = args ? args.volumeBindingMode : undefined;
           super("kubernetes:storage/v1:StorageClass", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8646,6 +9117,8 @@ export namespace storage {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.storage.v1.StorageClassList;
+
       /**
       * Create a storage.v1.StorageClassList resource with the given unique name, arguments, and options.
       *
@@ -8660,6 +9133,7 @@ export namespace storage {
           inputs["kind"] = "StorageClassList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:storage/v1:StorageClassList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8708,6 +9182,8 @@ export namespace storage {
       public readonly status: pulumi.Output<outputApi.storage.v1alpha1.VolumeAttachmentStatus>;
 
 
+      public readonly inputs?: inputApi.storage.v1alpha1.VolumeAttachment;
+
       /**
       * Create a storage.v1alpha1.VolumeAttachment resource with the given unique name, arguments, and options.
       *
@@ -8723,6 +9199,7 @@ export namespace storage {
           inputs["spec"] = args ? args.spec : undefined;
           inputs["status"] = args ? args.status : undefined;
           super("kubernetes:storage/v1alpha1:VolumeAttachment", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8758,6 +9235,8 @@ export namespace storage {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.storage.v1alpha1.VolumeAttachmentList;
+
       /**
       * Create a storage.v1alpha1.VolumeAttachmentList resource with the given unique name, arguments, and options.
       *
@@ -8772,6 +9251,7 @@ export namespace storage {
           inputs["kind"] = "VolumeAttachmentList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:storage/v1alpha1:VolumeAttachmentList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8845,6 +9325,8 @@ export namespace storage {
       public readonly volumeBindingMode: pulumi.Output<string>;
 
 
+      public readonly inputs?: inputApi.storage.v1beta1.StorageClass;
+
       /**
       * Create a storage.v1beta1.StorageClass resource with the given unique name, arguments, and options.
       *
@@ -8864,6 +9346,7 @@ export namespace storage {
           inputs["reclaimPolicy"] = args ? args.reclaimPolicy : undefined;
           inputs["volumeBindingMode"] = args ? args.volumeBindingMode : undefined;
           super("kubernetes:storage/v1beta1:StorageClass", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
@@ -8899,6 +9382,8 @@ export namespace storage {
       public readonly metadata: pulumi.Output<outputApi.meta.v1.ListMeta>;
 
 
+      public readonly inputs?: inputApi.storage.v1beta1.StorageClassList;
+
       /**
       * Create a storage.v1beta1.StorageClassList resource with the given unique name, arguments, and options.
       *
@@ -8913,6 +9398,7 @@ export namespace storage {
           inputs["kind"] = "StorageClassList";
           inputs["metadata"] = args ? args.metadata : undefined;
           super("kubernetes:storage/v1beta1:StorageClassList", name, inputs, opts);
+          this.inputs = args;
       }
     }
 
