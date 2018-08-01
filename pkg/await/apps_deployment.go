@@ -82,8 +82,6 @@ type deploymentInitAwaiter struct {
 	pods        map[string]*unstructured.Unstructured
 }
 
-var _ Awaiter = (*deploymentInitAwaiter)(nil)
-
 func makeDeploymentInitAwaiter(c createAwaitConfig) *deploymentInitAwaiter {
 	return &deploymentInitAwaiter{
 		config:          c,
