@@ -120,9 +120,11 @@ type awaitSpec struct {
 }
 
 var deploymentAwaiter = awaitSpec{
-	awaitCreation: func(c createAwaitConfig) error { return makeDeploymentInitAwaiter(c).Await() },
+	awaitCreation: func(c createAwaitConfig) error {
+		return makeDeploymentInitAwaiter(updateAwaitConfig{createAwaitConfig: c}).Await()
+	},
 	awaitUpdate: func(u updateAwaitConfig) error {
-		return makeDeploymentInitAwaiter(u.createAwaitConfig).Await()
+		return makeDeploymentInitAwaiter(u).Await()
 	},
 	awaitDeletion: untilAppsDeploymentDeleted,
 }

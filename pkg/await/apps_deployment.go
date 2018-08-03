@@ -71,29 +71,29 @@ import (
 // ------------------------------------------------------------------------------------------------
 
 type deploymentInitAwaiter struct {
-	config             createAwaitConfig
-	rolloutComplete    bool
-	currentGeneration  int64
-	observedGeneration int64
+	config                 updateAwaitConfig
+	rolloutComplete        bool
+	updatedReplicaSetReady bool
+	currentGeneration      string
 
 	deploymentErrors map[string]string
 
-	replicaSets map[int64]*unstructured.Unstructured
+	replicaSets map[string]*unstructured.Unstructured
 	pods        map[string]*unstructured.Unstructured
 }
 
-func makeDeploymentInitAwaiter(c createAwaitConfig) *deploymentInitAwaiter {
+func makeDeploymentInitAwaiter(c updateAwaitConfig) *deploymentInitAwaiter {
 	return &deploymentInitAwaiter{
-		config:          c,
-		rolloutComplete: false,
+		config:                 c,
+		rolloutComplete:        false,
+		updatedReplicaSetReady: false,
 		// NOTE: Generation 0 is invalid, so this is a good sentinel value.
-		currentGeneration:  0,
-		observedGeneration: 0,
+		currentGeneration: "0",
 
 		deploymentErrors: map[string]string{},
 
 		pods:        map[string]*unstructured.Unstructured{},
-		replicaSets: map[int64]*unstructured.Unstructured{},
+		replicaSets: map[string]*unstructured.Unstructured{},
 	}
 }
 
@@ -171,26 +171,18 @@ func (dia *deploymentInitAwaiter) await(
 	inputPodName := dia.config.currentInputs.GetName()
 	for {
 		// Check whether we've succeeded.
-		if dia.rolloutComplete {
+		if dia.rolloutComplete && dia.updatedReplicaSetReady {
 			return nil
 		}
 
 		// Else, wait for updates.
 		select {
 		case <-dia.config.ctx.Done():
-			// On cancel, check one last time if the service is ready.
-			if dia.rolloutComplete {
-				return nil
-			}
 			return &cancellationError{
 				objectName: inputPodName,
 				subErrors:  dia.errorMessages(),
 			}
 		case <-timeout:
-			// On timeout, check one last time if the service is ready.
-			if dia.rolloutComplete {
-				return nil
-			}
 			return &timeoutError{
 				objectName: inputPodName,
 				subErrors:  dia.errorMessages(),
@@ -239,26 +231,10 @@ func (dia *deploymentInitAwaiter) processDeploymentEvent(event watch.Event) {
 	}
 
 	// Get current generation of the Deployment.
-	dia.currentGeneration = deployment.GetGeneration()
-	if dia.currentGeneration == 0 {
+	dia.currentGeneration, _ = deployment.GetAnnotations()["deployment.kubernetes.io/revision"]
+	if dia.currentGeneration == "" {
 		// No current generation, Deployment controller has not yet created a ReplicaSet. Do
 		// nothing.
-		return
-	}
-
-	// Get observed generation of the Deployment.
-	rawGeneration, hasGeneration := openapi.Pluck(deployment.Object, "status", "observedGeneration")
-	var isNumber bool
-	dia.observedGeneration, isNumber = rawGeneration.(int64)
-	if !hasGeneration || !isNumber {
-		// No observed generation, Deployment controller has not yet created a ReplicaSet. Do
-		// nothing.
-		dia.observedGeneration = 0
-		return
-	}
-
-	// Return if Deployment controller has not created a new ReplicaSet for `currentGeneration`.
-	if dia.observedGeneration != dia.currentGeneration {
 		return
 	}
 
@@ -322,6 +298,7 @@ func (dia *deploymentInitAwaiter) processDeploymentEvent(event watch.Event) {
 	}
 
 	dia.rolloutComplete = replicaSetAvailable && deploymentAvailable
+	dia.checkReplicaSetStatus()
 }
 
 func (dia *deploymentInitAwaiter) processReplicaSetEvent(event watch.Event) {
@@ -333,18 +310,40 @@ func (dia *deploymentInitAwaiter) processReplicaSetEvent(event watch.Event) {
 	}
 
 	// Check whether this ReplicaSet was created by our Deployment.
-	inputs := dia.config.currentInputs
-	if !isOwnedBy(rs, inputs) {
+	if !isOwnedBy(rs, dia.config.currentInputs) {
 		return
 	}
 
 	// If Pod was deleted, remove it from our aggregated checkers.
+	generation, _ := rs.GetAnnotations()["deployment.kubernetes.io/revision"]
 	if event.Type == watch.Deleted {
-		delete(dia.replicaSets, rs.GetGeneration())
+		delete(dia.replicaSets, generation)
+		return
+	}
+	dia.replicaSets[generation] = rs
+	dia.checkReplicaSetStatus()
+}
+
+func (dia *deploymentInitAwaiter) checkReplicaSetStatus() {
+	inputs := dia.config.currentInputs
+
+	rs, udpatedReplicaSetCreated := dia.replicaSets[dia.currentGeneration]
+	if dia.currentGeneration == "0" || !udpatedReplicaSetCreated {
 		return
 	}
 
-	dia.replicaSets[rs.GetGeneration()] = rs
+	lastGeneration := "0"
+	if outputs := dia.config.lastOutputs; outputs != nil {
+		lastGeneration = outputs.GetAnnotations()["deployment.kubernetes.io/revision"]
+	}
+
+	rawSpecReplicas, specReplicasExists := openapi.Pluck(inputs.Object, "spec", "replicas")
+	specReplicas, _ := rawSpecReplicas.(float64)
+	rawReadyReplicas, readyReplicasExists := openapi.Pluck(rs.Object, "status", "readyReplicas")
+	readyReplicas, _ := rawReadyReplicas.(int64)
+
+	dia.updatedReplicaSetReady = lastGeneration != dia.currentGeneration && udpatedReplicaSetCreated &&
+		specReplicasExists && readyReplicasExists && readyReplicas >= int64(specReplicas)
 }
 
 func (dia *deploymentInitAwaiter) processPodEvent(event watch.Event) {
@@ -429,6 +428,9 @@ func (dia *deploymentInitAwaiter) errorMessages() []string {
 	for _, message := range dia.deploymentErrors {
 		messages = append(messages, message)
 	}
+	if !dia.updatedReplicaSetReady {
+		messages = append(messages, "Updated ReplicaSet was never created")
+	}
 	scheduleErrors, containerErrors := dia.aggregatePodErrors()
 	messages = append(messages, scheduleErrors...)
 	messages = append(messages, containerErrors...)
@@ -437,8 +439,16 @@ func (dia *deploymentInitAwaiter) errorMessages() []string {
 }
 
 func isOwnedBy(obj, possibleOwner *unstructured.Unstructured) bool {
+	if possibleOwner.GetAPIVersion() == "extensions/v1beta1" && possibleOwner.GetKind() == "Deployment" {
+		possibleOwner.SetAPIVersion("apps/v1beta1")
+	}
+
 	owners := obj.GetOwnerReferences()
 	for _, owner := range owners {
+		if owner.APIVersion == "extensions/v1beta1" && owner.Kind == "Deployment" {
+			owner.APIVersion = "apps/v1beta1"
+		}
+
 		if owner.APIVersion == possibleOwner.GetAPIVersion() &&
 			possibleOwner.GetKind() == owner.Kind && possibleOwner.GetName() == owner.Name {
 			return true

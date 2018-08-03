@@ -10,6 +10,13 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 )
 
+const (
+	inputNamespace          = "default"
+	deploymentInputName     = "foo-4setj4y6"
+	replicaSetGeneratedName = "foo-4setj4y6-7cdf7ddc54"
+	revision1               = "1"
+)
+
 func Test_Apps_Deployment(t *testing.T) {
 	tests := []struct {
 		description   string
@@ -21,11 +28,17 @@ func Test_Apps_Deployment(t *testing.T) {
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
 				// API server successfully creates and initializes Deployment and ReplicaSet
 				// objects.
-				deployments <- watchAddedEvent(deploymentAdded("default", "foo-4setj4y6"))
-				deployments <- watchAddedEvent(deploymentProgressing("default", "foo-4setj4y6"))
 				deployments <- watchAddedEvent(
-					deploymentProgressingUnavailable("default", "foo-4setj4y6"))
-				deployments <- watchAddedEvent(deploymentRolloutComplete("default", "foo-4setj4y6"))
+					deploymentAdded(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentProgressing(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentProgressingUnavailable(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentRolloutComplete(inputNamespace, deploymentInputName, revision1))
+
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, replicaSetGeneratedName, deploymentInputName, revision1))
 
 				// Timeout. Success.
 				timeout <- time.Now()
@@ -36,11 +49,15 @@ func Test_Apps_Deployment(t *testing.T) {
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
 				// Deployment is updated by the user. The controller creates and successfully
 				// initializes the ReplicaSet.
-				deployments <- watchAddedEvent(deploymentUpdated("default", "foo-4setj4y6"))
 				deployments <- watchAddedEvent(
-					deploymentUpdatedReplicaSetProgressing("default", "foo-4setj4y6"))
+					deploymentUpdated(inputNamespace, deploymentInputName, revision1))
 				deployments <- watchAddedEvent(
-					deploymentUpdatedReplicaSetProgressed("default", "foo-4setj4y6"))
+					deploymentUpdatedReplicaSetProgressing(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentUpdatedReplicaSetProgressed(inputNamespace, deploymentInputName, revision1))
+
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, replicaSetGeneratedName, deploymentInputName, revision1))
 
 				// Timeout. Success.
 				timeout <- time.Now()
@@ -49,18 +66,31 @@ func Test_Apps_Deployment(t *testing.T) {
 		{
 			description: "Should fail if unrelated Deployment succeeds",
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
-				deployments <- watchAddedEvent(deploymentRolloutComplete("default", "bar"))
+				deployments <- watchAddedEvent(
+					deploymentAdded(inputNamespace, deploymentInputName, revision1))
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, replicaSetGeneratedName, deploymentInputName, revision1))
+
+				deployments <- watchAddedEvent(deploymentRolloutComplete(inputNamespace, "bar", revision1))
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, "bar-ablksd", "bar", revision1))
 
 				// Timeout. Failure.
 				timeout <- time.Now()
 			},
-			expectedError: &timeoutError{objectName: "foo-4setj4y6", subErrors: []string{}},
+			expectedError: &timeoutError{objectName: deploymentInputName, subErrors: []string{}},
 		},
 		{
 			description: "Should succeed when unrelated deployment fails",
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
-				deployments <- watchAddedEvent(deploymentRolloutComplete("default", "foo-4setj4y6"))
-				deployments <- watchAddedEvent(deploymentAdded("default", "bar"))
+				deployments <- watchAddedEvent(
+					deploymentRolloutComplete(inputNamespace, deploymentInputName, revision1))
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, replicaSetGeneratedName, deploymentInputName, revision1))
+
+				deployments <- watchAddedEvent(deploymentAdded(inputNamespace, "bar", revision1))
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, "bar-ablksd", "bar", revision1))
 
 				// Timeout. Success.
 				timeout <- time.Now()
@@ -69,9 +99,12 @@ func Test_Apps_Deployment(t *testing.T) {
 		{
 			description: "Should report success immediately even if the next event is a failure",
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
-				deployments <- watchAddedEvent(deploymentRolloutComplete("default", "foo-4setj4y6"))
 				deployments <- watchAddedEvent(
-					deploymentProgressingInvalidContainer("default", "foo-4setj4y6"))
+					deploymentRolloutComplete(inputNamespace, deploymentInputName, revision1))
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, replicaSetGeneratedName, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentProgressingInvalidContainer(inputNamespace, deploymentInputName, revision1))
 
 				// Timeout. Success.
 				timeout <- time.Now()
@@ -82,87 +115,103 @@ func Test_Apps_Deployment(t *testing.T) {
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
 				// User submits a deployment. Controller hasn't created the ReplicaSet when we time
 				// out.
-				deployments <- watchAddedEvent(deploymentAdded("default", "foo-4setj4y6"))
+				deployments <- watchAddedEvent(
+					deploymentAdded(inputNamespace, deploymentInputName, revision1))
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, replicaSetGeneratedName, deploymentInputName, revision1))
 
 				// Timeout. Failure.
 				timeout <- time.Now()
 			},
 			expectedError: &timeoutError{
-				objectName: "foo-4setj4y6", subErrors: []string{}},
+				objectName: deploymentInputName, subErrors: []string{}},
 		},
 		{
 			description: "Should fail if timeout occurs before ReplicaSet is created",
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
 				// User submits a deployment. Controller creates ReplicaSet, but the replication
 				// controller does not start initializing it before it errors out.
-				deployments <- watchAddedEvent(deploymentAdded("default", "foo-4setj4y6"))
-				deployments <- watchAddedEvent(deploymentProgressing("default", "foo-4setj4y6"))
+				deployments <- watchAddedEvent(
+					deploymentAdded(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentProgressing(inputNamespace, deploymentInputName, revision1))
 
 				// Timeout. Failure.
 				timeout <- time.Now()
 			},
 			expectedError: &timeoutError{
-				objectName: "foo-4setj4y6", subErrors: []string{}},
+				objectName: deploymentInputName, subErrors: []string{"Updated ReplicaSet was never created"}},
 		},
 		{
 			description: "Should fail if timeout occurs before ReplicaSet becomes available",
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
 				// User submits a deployment. Controller creates ReplicaSet, but it's still
 				// unavailable when we time out.
-				deployments <- watchAddedEvent(deploymentAdded("default", "foo-4setj4y6"))
-				deployments <- watchAddedEvent(deploymentProgressing("default", "foo-4setj4y6"))
 				deployments <- watchAddedEvent(
-					deploymentProgressingUnavailable("default", "foo-4setj4y6"))
+					deploymentAdded(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentProgressing(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentProgressingUnavailable(inputNamespace, deploymentInputName, revision1))
 
 				// Timeout. Failure.
 				timeout <- time.Now()
 			},
 			expectedError: &timeoutError{
-				objectName: "foo-4setj4y6",
-				subErrors:  []string{"[MinimumReplicasUnavailable] Deployment does not have minimum availability."}},
+				objectName: deploymentInputName,
+				subErrors: []string{
+					"[MinimumReplicasUnavailable] Deployment does not have minimum availability.",
+					"Updated ReplicaSet was never created"}},
 		},
 		{
 			description: "Should fail if new ReplicaSet isn't created after an update",
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
 				// Deployment is updated by the user. The controller does not create a new
 				// ReplicaSet before we time out.
-				deployments <- watchAddedEvent(deploymentUpdated("default", "foo-4setj4y6"))
+				deployments <- watchAddedEvent(
+					deploymentUpdated(inputNamespace, deploymentInputName, revision1))
 
 				// Timeout. Failure.
 				timeout <- time.Now()
 			},
 			expectedError: &timeoutError{
-				objectName: "foo-4setj4y6", subErrors: []string{}},
+				objectName: deploymentInputName, subErrors: []string{"Updated ReplicaSet was never created"}},
 		},
 		{
 			description: "Should fail if timeout before new ReplicaSet becomes available",
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
 				// Deployment is updated by the user. The controller creates the ReplicaSet, but we
 				// time out before it can complete initializing.
-				deployments <- watchAddedEvent(deploymentUpdated("default", "foo-4setj4y6"))
 				deployments <- watchAddedEvent(
-					deploymentUpdatedReplicaSetProgressing("default", "foo-4setj4y6"))
+					deploymentUpdated(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentUpdatedReplicaSetProgressing(inputNamespace, deploymentInputName, revision1))
 
 				// Timeout. Failure.
 				timeout <- time.Now()
 			},
 			expectedError: &timeoutError{
-				objectName: "foo-4setj4y6", subErrors: []string{}},
+				objectName: deploymentInputName, subErrors: []string{"Updated ReplicaSet was never created"}},
 		},
 		{
 			description: "Should fail if Deployment not progressing",
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
 				// User submits a deployment. Controller creates ReplicaSet, and it tries to
 				// progress, but it fails.
-				deployments <- watchAddedEvent(deploymentAdded("default", "foo-4setj4y6"))
-				deployments <- watchAddedEvent(deploymentProgressing("default", "foo-4setj4y6"))
-				deployments <- watchAddedEvent(deploymentNotProgressing("default", "foo-4setj4y6"))
+				deployments <- watchAddedEvent(
+					deploymentAdded(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentProgressing(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentNotProgressing(inputNamespace, deploymentInputName, revision1))
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, replicaSetGeneratedName, deploymentInputName, revision1))
 
 				// Timeout. Failure.
 				timeout <- time.Now()
 			},
 			expectedError: &timeoutError{
-				objectName: "foo-4setj4y6",
+				objectName: deploymentInputName,
 				subErrors: []string{
 					`[ProgressDeadlineExceeded] ReplicaSet "foo-13y9rdnu-b94df86d6" has timed ` +
 						`out progressing.`}},
@@ -172,64 +221,71 @@ func Test_Apps_Deployment(t *testing.T) {
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
 				// User submits a deployment. Controller creates ReplicaSet, and it tries to
 				// progress, but it will not, because it is using an invalid container image.
-				deployments <- watchAddedEvent(deploymentAdded("default", "foo-4setj4y6"))
-				deployments <- watchAddedEvent(deploymentProgressing("default", "foo-4setj4y6"))
 				deployments <- watchAddedEvent(
-					deploymentProgressingInvalidContainer("default", "foo-4setj4y6"))
+					deploymentAdded(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentProgressing(inputNamespace, deploymentInputName, revision1))
+				deployments <- watchAddedEvent(
+					deploymentProgressingInvalidContainer(inputNamespace, deploymentInputName, revision1))
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, replicaSetGeneratedName, deploymentInputName, revision1))
 
 				// Timeout. Failure.
 				timeout <- time.Now()
 			},
 			expectedError: &timeoutError{
-				objectName: "foo-4setj4y6", subErrors: []string{}},
+				objectName: deploymentInputName, subErrors: []string{}},
 		},
 		{
 			description: "Failure should only report Pods from active ReplicaSet, part 1",
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
-				deploymentName := "foo-4setj4y6"
-				replicaSetName := "foo-4setj4y6-7cdf7ddc54"
 				readyPodName := "foo-4setj4y6-7cdf7ddc54-kvh2w"
 
-				deployments <- watchAddedEvent(deploymentProgressing("default", deploymentName))
-				replicaSets <- watchAddedEvent(availableReplicaSet("default", replicaSetName, deploymentName))
+				deployments <- watchAddedEvent(
+					deploymentProgressing(inputNamespace, deploymentInputName, revision1))
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, replicaSetGeneratedName, deploymentInputName, revision1))
 
 				// Ready Pod should generate no errors.
-				pods <- watchAddedEvent(deployedReadyPod("default", readyPodName, replicaSetName))
+				pods <- watchAddedEvent(deployedReadyPod(inputNamespace, readyPodName, replicaSetGeneratedName))
 
 				// Pod belonging to some other ReplicaSet should not show up in the errors.
-				pods <- watchAddedEvent(deployedFailedPod("default", readyPodName, "bar"))
+				pods <- watchAddedEvent(deployedFailedPod(inputNamespace, readyPodName, "bar"))
 
 				// Timeout. Failure.
 				timeout <- time.Now()
 			},
-			expectedError: &timeoutError{objectName: "foo-4setj4y6", subErrors: []string{}},
+			expectedError: &timeoutError{objectName: deploymentInputName, subErrors: []string{}},
 		},
 		{
 			description: "Failure should only report Pods from active ReplicaSet, part 2",
 			do: func(deployments, replicaSets, pods chan watch.Event, timeout chan time.Time) {
-				deploymentName := "foo-4setj4y6"
-				replicaSetName := "foo-4setj4y6-7cdf7ddc54"
 				readyPodName := "foo-4setj4y6-7cdf7ddc54-kvh2w"
 
-				deployments <- watchAddedEvent(deploymentProgressing("default", deploymentName))
-				replicaSets <- watchAddedEvent(availableReplicaSet("default", replicaSetName, deploymentName))
+				deployments <- watchAddedEvent(
+					deploymentProgressing(inputNamespace, deploymentInputName, revision1))
+				replicaSets <- watchAddedEvent(
+					availableReplicaSet(inputNamespace, replicaSetGeneratedName, deploymentInputName, revision1))
 
 				// Failed Pod should show up in the errors.
-				pods <- watchAddedEvent(deployedFailedPod("default", readyPodName, replicaSetName))
+				pods <- watchAddedEvent(deployedFailedPod(inputNamespace, readyPodName, replicaSetGeneratedName))
 
 				// // Unrelated successful Pod should generate no errors.
-				// pods <- watchAddedEvent(deployedReadyPod("default", readyPodName, "bar"))
+				// pods <- watchAddedEvent(deployedReadyPod(inputNamespace, readyPodName, "bar"))
 
 				// Timeout. Failure.
 				timeout <- time.Now()
 			},
-			expectedError: &timeoutError{objectName: "foo-4setj4y6", subErrors: []string{
+			expectedError: &timeoutError{objectName: deploymentInputName, subErrors: []string{
 				"1 Pods failed to run because: [ImagePullBackOff] Back-off pulling image \"sdkjlsdlkj\""}},
 		},
 	}
 
 	for _, test := range tests {
-		awaiter := makeDeploymentInitAwaiter(mockAwaitConfig(deploymentInput("default", "foo-4setj4y6")))
+		awaiter := makeDeploymentInitAwaiter(
+			updateAwaitConfig{
+				createAwaitConfig: mockAwaitConfig(deploymentInput(inputNamespace, deploymentInputName)),
+			})
 		deployments := make(chan watch.Event)
 		replicaSets := make(chan watch.Event)
 		pods := make(chan watch.Event)
@@ -291,7 +347,7 @@ func deploymentInput(namespace, name string) *unstructured.Unstructured {
 	return obj
 }
 
-func deploymentAdded(namespace, name string) *unstructured.Unstructured {
+func deploymentAdded(namespace, name, revision string) *unstructured.Unstructured {
 	obj, err := decodeUnstructured(fmt.Sprintf(`{
     "kind": "Deployment",
     "apiVersion": "extensions/v1beta1",
@@ -301,6 +357,10 @@ func deploymentAdded(namespace, name string) *unstructured.Unstructured {
         "generation": 1,
         "labels": {
             "app": "foo"
+        },
+        "annotations": {
+            "deployment.kubernetes.io/revision": "%s",
+            "pulumi.com/autonamed": "true"
         }
     },
     "spec": {
@@ -328,14 +388,14 @@ func deploymentAdded(namespace, name string) *unstructured.Unstructured {
         }
     },
     "status": {}
-}`, namespace, name))
+}`, namespace, name, revision))
 	if err != nil {
 		panic(err)
 	}
 	return obj
 }
 
-func deploymentProgressing(namespace, name string) *unstructured.Unstructured {
+func deploymentProgressing(namespace, name, revision string) *unstructured.Unstructured {
 	obj, err := decodeUnstructured(fmt.Sprintf(`{
     "kind": "Deployment",
     "apiVersion": "extensions/v1beta1",
@@ -347,7 +407,7 @@ func deploymentProgressing(namespace, name string) *unstructured.Unstructured {
             "app": "foo"
         },
         "annotations": {
-            "deployment.kubernetes.io/revision": "1",
+            "deployment.kubernetes.io/revision": "%s",
             "pulumi.com/autonamed": "true"
         }
     },
@@ -387,14 +447,14 @@ func deploymentProgressing(namespace, name string) *unstructured.Unstructured {
             }
         ]
     }
-}`, namespace, name))
+}`, namespace, name, revision))
 	if err != nil {
 		panic(err)
 	}
 	return obj
 }
 
-func deploymentNotProgressing(namespace, name string) *unstructured.Unstructured {
+func deploymentNotProgressing(namespace, name, revision string) *unstructured.Unstructured {
 	obj, err := decodeUnstructured(fmt.Sprintf(`{
     "apiVersion": "extensions/v1beta1",
     "kind": "Deployment",
@@ -404,7 +464,11 @@ func deploymentNotProgressing(namespace, name string) *unstructured.Unstructured
             "app": "foo"
         },
         "namespace": "%s",
-        "name": "%s"
+        "name": "%s",
+        "annotations": {
+            "deployment.kubernetes.io/revision": "%s",
+            "pulumi.com/autonamed": "true"
+        }
     },
     "spec": {
         "replicas": 1,
@@ -456,14 +520,14 @@ func deploymentNotProgressing(namespace, name string) *unstructured.Unstructured
         "unavailableReplicas": 1,
         "updatedReplicas": 1
     }
-}`, namespace, name))
+}`, namespace, name, revision))
 	if err != nil {
 		panic(err)
 	}
 	return obj
 }
 
-func deploymentProgressingInvalidContainer(namespace, name string) *unstructured.Unstructured {
+func deploymentProgressingInvalidContainer(namespace, name, revision string) *unstructured.Unstructured {
 	obj, err := decodeUnstructured(fmt.Sprintf(`{
     "apiVersion": "extensions/v1beta1",
     "kind": "Deployment",
@@ -473,7 +537,11 @@ func deploymentProgressingInvalidContainer(namespace, name string) *unstructured
             "app": "foo"
         },
         "namespace": "%s",
-        "name": "%s"
+        "name": "%s",
+        "annotations": {
+            "deployment.kubernetes.io/revision": "%s",
+            "pulumi.com/autonamed": "true"
+        }
     },
     "spec": {
         "replicas": 1,
@@ -527,14 +595,14 @@ func deploymentProgressingInvalidContainer(namespace, name string) *unstructured
         "updatedReplicas": 1
     }
 }
-`, namespace, name))
+`, namespace, name, revision))
 	if err != nil {
 		panic(err)
 	}
 	return obj
 }
 
-func deploymentProgressingUnavailable(namespace, name string) *unstructured.Unstructured {
+func deploymentProgressingUnavailable(namespace, name, revision string) *unstructured.Unstructured {
 	obj, err := decodeUnstructured(fmt.Sprintf(`{
     "kind": "Deployment",
     "apiVersion": "extensions/v1beta1",
@@ -546,7 +614,7 @@ func deploymentProgressingUnavailable(namespace, name string) *unstructured.Unst
             "app": "foo"
         },
         "annotations": {
-            "deployment.kubernetes.io/revision": "1",
+            "deployment.kubernetes.io/revision": "%s",
             "pulumi.com/autonamed": "true"
         }
     },
@@ -598,14 +666,14 @@ func deploymentProgressingUnavailable(namespace, name string) *unstructured.Unst
             }
         ]
     }
-}`, namespace, name))
+}`, namespace, name, revision))
 	if err != nil {
 		panic(err)
 	}
 	return obj
 }
 
-func deploymentRolloutComplete(namespace, name string) *unstructured.Unstructured {
+func deploymentRolloutComplete(namespace, name, revision string) *unstructured.Unstructured {
 	obj, err := decodeUnstructured(fmt.Sprintf(`{
     "kind": "Deployment",
     "apiVersion": "extensions/v1beta1",
@@ -617,7 +685,7 @@ func deploymentRolloutComplete(namespace, name string) *unstructured.Unstructure
             "app": "foo"
         },
         "annotations": {
-            "deployment.kubernetes.io/revision": "1",
+            "deployment.kubernetes.io/revision": "%s",
             "pulumi.com/autonamed": "true"
         }
     },
@@ -670,14 +738,14 @@ func deploymentRolloutComplete(namespace, name string) *unstructured.Unstructure
             }
         ]
     }
-}`, namespace, name))
+}`, namespace, name, revision))
 	if err != nil {
 		panic(err)
 	}
 	return obj
 }
 
-func deploymentUpdated(namespace, name string) *unstructured.Unstructured {
+func deploymentUpdated(namespace, name, revision string) *unstructured.Unstructured {
 	obj, err := decodeUnstructured(fmt.Sprintf(`{
     "kind": "Deployment",
     "apiVersion": "extensions/v1beta1",
@@ -689,7 +757,7 @@ func deploymentUpdated(namespace, name string) *unstructured.Unstructured {
             "app": "foo"
         },
         "annotations": {
-            "deployment.kubernetes.io/revision": "1",
+            "deployment.kubernetes.io/revision": "%s",
             "pulumi.com/autonamed": "true"
         }
     },
@@ -742,14 +810,14 @@ func deploymentUpdated(namespace, name string) *unstructured.Unstructured {
             }
         ]
     }
-}`, namespace, name))
+}`, namespace, name, revision))
 	if err != nil {
 		panic(err)
 	}
 	return obj
 }
 
-func deploymentUpdatedReplicaSetProgressing(namespace, name string) *unstructured.Unstructured {
+func deploymentUpdatedReplicaSetProgressing(namespace, name, revision string) *unstructured.Unstructured {
 	obj, err := decodeUnstructured(fmt.Sprintf(`{
     "kind": "Deployment",
     "apiVersion": "extensions/v1beta1",
@@ -759,6 +827,10 @@ func deploymentUpdatedReplicaSetProgressing(namespace, name string) *unstructure
         "generation": 2,
         "labels": {
             "app": "foo"
+        },
+        "annotations": {
+            "deployment.kubernetes.io/revision": "%s",
+            "pulumi.com/autonamed": "true"
         }
     },
     "spec": {
@@ -810,14 +882,14 @@ func deploymentUpdatedReplicaSetProgressing(namespace, name string) *unstructure
             }
         ]
     }
-}`, namespace, name))
+}`, namespace, name, revision))
 	if err != nil {
 		panic(err)
 	}
 	return obj
 }
 
-func deploymentUpdatedReplicaSetProgressed(namespace, name string) *unstructured.Unstructured {
+func deploymentUpdatedReplicaSetProgressed(namespace, name, revision string) *unstructured.Unstructured {
 	obj, err := decodeUnstructured(fmt.Sprintf(`{
     "kind": "Deployment",
     "apiVersion": "extensions/v1beta1",
@@ -829,7 +901,7 @@ func deploymentUpdatedReplicaSetProgressed(namespace, name string) *unstructured
             "app": "foo"
         },
         "annotations": {
-            "deployment.kubernetes.io/revision": "2",
+            "deployment.kubernetes.io/revision": "%s",
             "pulumi.com/autonamed": "true"
         }
     },
@@ -887,7 +959,7 @@ func deploymentUpdatedReplicaSetProgressed(namespace, name string) *unstructured
             }
         ]
     }
-}`, namespace, name))
+}`, namespace, name, revision))
 	if err != nil {
 		panic(err)
 	}
@@ -900,7 +972,7 @@ func deploymentUpdatedReplicaSetProgressed(namespace, name string) *unstructured
 
 // --------------------------------------------------------------------------
 
-func availableReplicaSet(namespace, name, deploymentName string) *unstructured.Unstructured {
+func availableReplicaSet(namespace, name, deploymentName, revision string) *unstructured.Unstructured {
 	// nolint
 	obj, err := decodeUnstructured(fmt.Sprintf(`{
     "apiVersion": "extensions/v1beta1",
@@ -909,7 +981,7 @@ func availableReplicaSet(namespace, name, deploymentName string) *unstructured.U
         "annotations": {
             "deployment.kubernetes.io/desired-replicas": "3",
             "deployment.kubernetes.io/max-replicas": "4",
-            "deployment.kubernetes.io/revision": "3",
+            "deployment.kubernetes.io/revision": "%s",
             "deployment.kubernetes.io/revision-history": "3",
             "moolumi.com/metricsChecked": "true",
             "pulumi.com/autonamed": "true"
@@ -991,7 +1063,7 @@ func availableReplicaSet(namespace, name, deploymentName string) *unstructured.U
         "replicas": 3
     }
 }
-`, namespace, name, deploymentName))
+`, revision, namespace, name, deploymentName))
 	if err != nil {
 		panic(err)
 	}
